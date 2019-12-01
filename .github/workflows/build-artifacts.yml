@@ -19,11 +19,13 @@ jobs:
           git config --global user.email 'giorgiob.boa@gmail.com'
           git clone https://github.com/gioboa/$REPO.git ./temp/
           cd temp
+          rm -rf externals
           rm -rf ${GITHUB_REPOSITORY}
-          cp -r ../dist/* ./
+          cp -r ../elements/* ./${GITHUB_REPOSITORY}
           git add .
-          git commit -am 'Update ${GITHUB_REPOSITORY} artifacts'
+          git commit -am '$COMMIT_MSG'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_ACTIONS_TOKEN }}@github.com/gioboa/$REPO
           git push
         env:
           REPO: elements-repository
+          COMMIT_MSG: Update dashboard-view artifacts'
