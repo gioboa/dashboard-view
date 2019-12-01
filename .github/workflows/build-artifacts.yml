@@ -17,7 +17,7 @@ jobs:
         run: |
           git config --global user.name 'gioboa'
           git config --global user.email 'giorgiob.boa@gmail.com'
-          git clone https://github.com/gioboa/$REPO.git ./temp/
+          git clone https://github.com/gioboa/$ELEMENTS_REPO.git ./temp/
           cd temp
           rm -rf externals
           rm -rf $REPO
