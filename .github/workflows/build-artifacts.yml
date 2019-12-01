@@ -23,7 +23,7 @@ jobs:
           rm -rf $REPO
           mkdir $REPO
           cd $REPO
-          cp -r ../elements ./
+          cp -r ../../elements/* ./
           git add .
           git commit -am '$COMMIT_MSG'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_ACTIONS_TOKEN }}@github.com/gioboa/$ELEMENTS_REPO
