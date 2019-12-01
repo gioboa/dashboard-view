@@ -30,4 +30,4 @@ jobs:
         env:
           REPO: dashboard-view
           ELEMENTS_REPO: elements-repository
-          COMMIT_MSG: Update dashboard-view artifacts'
+          COMMIT_MSG: Update dashboard-view artifacts
