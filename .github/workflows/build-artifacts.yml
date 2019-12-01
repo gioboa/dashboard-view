@@ -12,8 +12,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm install
-      - run: npm run build  
-      - run: npm run postbuild  
+      - run: npm run build
       - name: Commit artifacts
         run: |
           git config --global user.name 'gioboa'
@@ -23,7 +22,6 @@ jobs:
           rm -rf externals
           rm -rf $REPO
           mkdir $REPO
-          cp -r ../elements/* ./$REPO
           git add .
           git commit -am '$COMMIT_MSG'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_ACTIONS_TOKEN }}@github.com/gioboa/$ELEMENTS_REPO
