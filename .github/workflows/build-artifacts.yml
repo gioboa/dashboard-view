@@ -22,6 +22,7 @@ jobs:
           cd temp
           rm -rf externals
           rm -rf ${GITHUB_REPOSITORY}
+          mkdir ${GITHUB_REPOSITORY}
           cp -r ../elements/* ./${GITHUB_REPOSITORY}
           git add .
           git commit -am '$COMMIT_MSG'
