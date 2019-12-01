@@ -1,0 +1,34 @@
+name: Build & Commit
+on:
+  push:
+    branches:    
+      - master 
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm install
+      - run: npm run build
+      - name: Commit artifacts
+        run: |
+          git config --global user.name 'gioboa'
+          git config --global user.email 'giorgiob.boa@gmail.com'
+          git clone https://github.com/gioboa/$ELEMENTS_REPO.git ./temp/
+          cd temp
+          rm -rf externals
+          rm -rf $REPO
+          mkdir $REPO
+          cd $REPO
+          cp -r ../../elements/* ./
+          git add .
+          git commit -am '$COMMIT_MSG'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_ACTIONS_TOKEN }}@github.com/gioboa/$ELEMENTS_REPO
+          git push
+        env:
+          REPO: dashboard-view
+          ELEMENTS_REPO: elements-repository
+          COMMIT_MSG: Update dashboard-view artifacts'
