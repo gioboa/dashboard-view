@@ -7,7 +7,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class AppComponent implements OnChanges {
   @Input()
-  state = {};
+  state: any = {};
 
   ngOnChanges(changes: SimpleChanges) {
     if (!!changes['state']) {
