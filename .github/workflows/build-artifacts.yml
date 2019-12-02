@@ -24,10 +24,9 @@ jobs:
           cd $REPO
           cp -r ../../elements/* ./
           git add .
-          git commit -am '$COMMIT_MSG'
+          git commit -am 'Update dashboard-view artifacts'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_ACTIONS_TOKEN }}@github.com/gioboa/$ELEMENTS_REPO
           git push
         env:
           REPO: dashboard-view
           ELEMENTS_REPO: elements-repository
-          COMMIT_MSG: Update dashboard-view artifacts
