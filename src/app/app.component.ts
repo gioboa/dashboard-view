@@ -18,7 +18,19 @@ export class AppComponent implements OnChanges, OnInit {
       highlightStroke: 'rgba(47, 132, 71, 0.8)'
     }
   ];
-  chartOptions = { responsive: true };
+  chartOptions = {
+    responsive: true,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            max: 100,
+            min: 0
+          }
+        }
+      ]
+    }
+  };
   chartData = [{ data: [], fill: false, label: 'CPU' }];
   chartLabels = [];
 
@@ -38,7 +50,7 @@ export class AppComponent implements OnChanges, OnInit {
       data.shift();
     }
     labels.push(new Date().toLocaleTimeString());
-    data.push(Math.random() * 200 + 20);
+    data.push(Math.random() * 50 + 20);
     this.chartLabels = [...labels];
     this.chartData[0].data = data;
   }
