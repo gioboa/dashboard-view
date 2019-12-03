@@ -18,35 +18,29 @@ export class AppComponent implements OnChanges, OnInit {
       highlightStroke: 'rgba(47, 132, 71, 0.8)'
     }
   ];
-  chartOptions = {
-    responsive: true
-  };
-  chartData = [{ data: [], label: 'CPU' }];
+  chartOptions = { responsive: true };
+  chartData = [{ data: [], fill: false, label: 'CPU' }];
   chartLabels = [];
 
   ngOnInit() {
-    let date = new Date();
-    date.setSeconds(date.getSeconds() - 5);
-    this.pushLabel(date);
-    this.chartData[0].data.push(Math.random() * 200 + 20);
-    date = new Date();
-    this.pushLabel(date);
-    this.chartData[0].data.push(Math.random() * 200 + 20);
-    interval(5000).subscribe(() => {
-      const arr = [...this.chartLabels];
-      if (arr.length === 10) {
-        arr.shift();
-        this.chartData[0].data.shift();
-      }
-      const date = new Date();
-      arr.push(`${date.getMinutes()}:${date.getSeconds()}`);
-      this.chartData[0].data.push(Math.random() * 200 + 20);
-      this.chartLabels = [...arr];
-    });
+    this.tapData();
+    this.tapData();
+    this.tapData();
+    this.tapData();
+    interval(2000).subscribe(() => this.tapData());
   }
 
-  private pushLabel(date: Date) {
-    this.chartLabels.push(`${date.getMinutes()}:${date.getSeconds()}`);
+  private tapData() {
+    const labels = [...this.chartLabels];
+    const data = [...this.chartData[0].data];
+    if (labels.length === 10) {
+      labels.shift();
+      data.shift();
+    }
+    labels.push(new Date().toLocaleTimeString());
+    data.push(Math.random() * 200 + 20);
+    this.chartLabels = [...labels];
+    this.chartData[0].data = data;
   }
 
   ngOnChanges(changes: SimpleChanges) {
